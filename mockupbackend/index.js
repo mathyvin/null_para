@@ -77,7 +77,7 @@ let users = [
     res.json({ message: 'Successfully logged in', user });
 });
   // Route zum Abrufen aller Benutzer
-app.get('/users', ( res) => {
+app.get('/users', (req, res) => {
   res.json(users);
 });
 
