@@ -3,7 +3,8 @@ import { AppBar, IconButton, Typography, Box, List, ListItem, ListItemText, Line
 import MenuIcon from '@mui/icons-material/Menu';
 import { Navigation } from '@mui/icons-material';
 
-export function Home() {
+export default function HomeParentsPage() {
+    //TODO Change to view of parents
   return (
     <Box>
 
