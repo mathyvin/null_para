@@ -229,14 +229,16 @@ let transactions = [
       amount: 5,
       description: 'Belohnung für Zimmer aufräumen',
       senderId: 1,
-      receiverId: 2
+      receiverId: 2,
+      datetime: new Date().toISOString() 
     },
     {
       id: 2,
       amount: 2,
       description: 'Taschengeld',
       senderId: 1,
-      receiverId: 2
+      receiverId: 2,
+      datetime: new Date().toISOString() 
   }
   
   ];
@@ -247,14 +249,15 @@ app.get('/transactions', (req, res) => {
 
 // Route zum Erstellen einer neuen Transaktion
 app.post('/transactions', (req, res) => {
-  const { amount, description, senderId, receiverId } = req.body;
+  const { amount, description, senderId, receiverId, datetime } = req.body;
 
   const newTransaction = {
     id: transactions.length + 1,
     amount: amount,
     description: description,
     senderId: senderId,
-    receiverId: receiverId
+    receiverId: receiverId,
+    datetime: datetime
   };
 
   transactions.push(newTransaction);
@@ -265,7 +268,7 @@ app.post('/transactions', (req, res) => {
 // Route zum Aktualisieren einer Transaktion
 app.put('/transactions/:id', (req, res) => {
   const transactionId = parseInt(req.params.id);
-  const { amount, description, senderId, receiverId } = req.body;
+  const { amount, description, senderId, receiverId, datetime } = req.body;
 
   const transactionToUpdate = transactions.find(transaction => transaction.id === transactionId);
 
@@ -285,7 +288,9 @@ app.put('/transactions/:id', (req, res) => {
   if (receiverId !== undefined) {
     transactionToUpdate.receiverId = receiverId;
   }
-
+  if (datetime !== undefined) {
+    transactionToUpdate.datetime = datetime;
+  }
   res.json(transactionToUpdate);
 });
 
