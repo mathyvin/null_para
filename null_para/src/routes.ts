@@ -14,7 +14,7 @@ export const routesChildren : IRoutes[] = [
         {'url': '/settings', 'component': SettingsPage, name: "Settings"}    
     ];
 
-    export const routesP : IRoutes[] = [
+export const routesParent : IRoutes[] = [
         {'url': '/', 'component': HomeParentsPage, name: "Home"},
         {'url': '/saving', 'component': SavingChildrenPage, name: "Saving"},
         {'url': '/learn', 'component': LearnPage, name: "Learn"},

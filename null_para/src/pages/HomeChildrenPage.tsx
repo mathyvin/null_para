@@ -3,11 +3,11 @@ import { AppBar, IconButton, Typography, Box, List, ListItem, ListItemText, Line
 import SavingTileProgressBar from '../components/SavingTile';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Navigation } from '@mui/icons-material';
-
+import BankingTile from '../components/BankingTile';
 export default function HomeChildrenPage() {
   return (
     <Box>
-
+    
       <Grid container justifyContent="center" alignItems="center" direction="column" spacing={3}>
         <Grid item>
           <img src="/images/Schwein.png" alt="Piggy" style={{ width: 150, height: 150 }} />
@@ -19,6 +19,7 @@ export default function HomeChildrenPage() {
         <Grid item xs={12} sm={8} md={6}>
           <Typography variant="h6">Letzten Zahlungen</Typography>
           <List>
+            <BankingTile/>
             <ListItem>
               <ListItemText primary="-25,45€" secondary="Amazon co. UG Unt..." />
             </ListItem>
