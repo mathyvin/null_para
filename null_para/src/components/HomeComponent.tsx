@@ -1,20 +1,11 @@
 import React from 'react';
 import { AppBar, IconButton, Typography, Box, List, ListItem, ListItemText, LinearProgress, Toolbar, Grid } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Navigation } from '@mui/icons-material';
 
 export function Home() {
   return (
     <Box>
-      <AppBar position="static" color="primary">
-        <Toolbar>
-          <Typography variant="h6" style={{ flexGrow: 1 }}>
-            App Name
-          </Typography>
-          <IconButton edge="end" color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
 
       <Grid container justifyContent="center" alignItems="center" direction="column" spacing={3}>
         <Grid item>
@@ -37,7 +28,7 @@ export function Home() {
           <Typography variant="h6">Aufgaben</Typography>
           <List>
             <ListItem>
-              <ListItemText primary="5€" secondary="Haftbefehl hören" />
+              <ListItemText primary="5€" secondary="Taylor Swift hören" />
             </ListItem>
             {/* Add more ListItem components for more entries */}
           </List>
