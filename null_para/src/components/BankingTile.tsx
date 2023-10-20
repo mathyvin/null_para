@@ -2,8 +2,13 @@ import { Grid, Paper, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import {StyledGridItem, StyledPaper, StyledTypographyBig, StyledTypographySmall} from './StyledComponents'
 import React from 'react';
+import { ITransaction } from '../interfaces/ITransaction';
 
-export default function BankingTile(){
+interface BankingTileParams {
+  transaction: ITransaction
+}
+
+export default function BankingTile({}){
 
   return   (  
     <StyledPaper>

@@ -1,28 +1,34 @@
 import { Grid, Paper, Typography, styled } from "@mui/material";
-  
+import { lineHeight } from "@mui/system";
 export const StyledPaper = styled(Paper)({
-    padding: '10px',
-    height: '100%',
-    minHeight: '70px',
-    textAlign: 'center',
-    color: 'black', // Textfarbe
-    backgroundColor: '#E5E5E5', // Hintergrundfarbe der Kacheln
-    borderRadius: '5px', // abgerundete Ecken
-  });
-
+  paddingRight: '3px',
+  paddingTop: '8px',
+  marginTop: '5px',
+  height: '100%',
+  textAlign: 'center',
+  color: 'black',
+  backgroundColor: '#E5E5E5',
+  borderRadius: '5px',
+  minHeight: '0px'
+});
 
 export const StyledGridItem = styled(Grid)({
-  margin: '0px',
-})
-  
-  export const StyledTypographyBig = styled(Typography)({
-    fontSize: '24px',  // Adjust size as needed
-    fontWeight: 'bold',
-    margin: '0px',
-  });
+  margin: '5px',
+  paddingTop: '0px !important',
+  marginTop: '5px',
+});
 
-  export const StyledTypographySmall = styled(Typography)({
-    fontSize: '14px',  // Adjust size as needed
-    padding: '0px',
-    margin: '0px'
-  });
+export const StyledTypographyBig = styled(Typography)({
+  fontSize: '18px',
+  fontWeight: 'bold',
+  padding: '0px !important',
+});
+
+export const StyledTypographySmall = styled(Typography)({
+  fontSize: '12px',
+});
+
+
+export const StyledBankingGrid = styled(Grid)({
+  padding: '5px !important',
+})
