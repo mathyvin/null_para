@@ -15,6 +15,7 @@ interface NullParaAppBarParams {
 }
 
 export function NullParaAppBar({routes} : NullParaAppBarParams) {
+
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleMenuOpen = (event : any) => {
@@ -24,7 +25,7 @@ export function NullParaAppBar({routes} : NullParaAppBarParams) {
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
-
+  
   return (
     <div>
       <AppBar position="static" >
