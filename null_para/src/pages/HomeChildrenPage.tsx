@@ -1,5 +1,6 @@
 import React from 'react';
 import { AppBar, IconButton, Typography, Box, List, ListItem, ListItemText, LinearProgress, Toolbar, Grid } from '@mui/material';
+import SavingTileProgressBar from '../components/SavingTile';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Navigation } from '@mui/icons-material';
 
@@ -34,11 +35,7 @@ export default function HomeChildrenPage() {
           </List>
         </Grid>
         <Grid item xs={12} sm={8} md={6}>
-          <Typography variant="h6">Sparziel</Typography>
-          <Box marginBottom={1}>
-            <Typography variant="body1">PS5</Typography>
-            <LinearProgress variant="determinate" value={50} />
-          </Box>
+          <SavingTileProgressBar currentAmount={499} goalAmount={500} />
         </Grid>
       </Grid>
     </Box>
