@@ -8,9 +8,13 @@ import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 
 import React, { useState } from 'react';
-// ... (wie oben importiert)
+import { IRoutes } from '../interfaces/IRoutes';
 
-export function NullParaAppBar() {
+interface NullParaAppBarParams {
+    routes: IRoutes[]
+}
+
+export function NullParaAppBar({routes} : NullParaAppBarParams) {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleMenuOpen = (event : any) => {
@@ -39,10 +43,12 @@ export function NullParaAppBar() {
         open={Boolean(anchorEl)}
         onClose={handleMenuClose}
       >
-        <MenuItem onClick={handleMenuClose} component={Link} to="/">Home</MenuItem>
-        <MenuItem onClick={handleMenuClose} component={Link} to="/sparen">Sparen</MenuItem>
-        <MenuItem onClick={handleMenuClose} component={Link} to="/lernen">Lernen</MenuItem>
-        <MenuItem onClick={handleMenuClose} component={Link} to="/einstellungen">Einstellungen</MenuItem>
+               {routes.map(route => 
+               <MenuItem onClick={handleMenuClose} component={Link} to={route.url}>
+                 {route.name}
+                </MenuItem>
+               )
+               } 
       </Menu>
     </div>
   );
