@@ -7,35 +7,13 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 interface TaskTileParams {
-  task: ITask
+  task: ITask,
+  handleButtonClick : any
 }
 
-export default function TaskTileParents({task} : TaskTileParams){
+export default function TaskTileParents({task, handleButtonClick} : TaskTileParams){
   const [isHovered, setIsHovered] = useState(false);
   const [isAccepted, setIsAccepted] = useState(task.completed);
-
-  const handleButtonClick = () => {
-    // PUT-Anfrage an den Endpunkt /tasks/:id/completed senden
-    fetch(`http://localhost:3002/tasks/${task.id}/completed`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ completed: true }), // Hier wird der completed-Status auf true gesetzt
-    })
-      .then(response => {
-        if (response.ok) {
-          // Die Aufgabe wurde erfolgreich auf "completed" gesetzt
-          setIsAccepted(true);
-        } else {
-          // Handle den Fall, wenn die Anfrage fehlschlägt
-          console.error('Fehler beim Aktualisieren des Aufgabenstatus');
-        }
-      })
-      .catch(error => {
-        console.error('Fehler beim Senden der Anfrage:', error);
-      });
-  };
 
 
   const handleMouseEnter = () => {
@@ -45,6 +23,11 @@ export default function TaskTileParents({task} : TaskTileParams){
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
+
+  const handleClickTaskFileParents = () => {
+    handleButtonClick(task);
+    setIsAccepted(true);
+  }
   
   return (  
     <StyledPaperColumn>
@@ -68,7 +51,7 @@ export default function TaskTileParents({task} : TaskTileParams){
       <Box justifyContent="flex-end" display="flex" flexDirection="row" gap={2}>
         <StyledBoxItem marginRight={'10'}>
           <IconButton 
-            onClick={handleButtonClick} 
+            onClick={handleClickTaskFileParents} 
             color="primary" 
             aria-label="CheckCircle"
             onMouseEnter={handleMouseEnter}
