@@ -1,5 +1,5 @@
 export interface IRoutes {
-    url : string,
-    component : React.FC,
-    name : string,
+  url: string;
+  component: React.FC;
+  name: string;
 }
