@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 
 import React, { useState } from "react";
 import { IRoutes } from "../interfaces/IRoutes";
+import { routesParent } from "../routes";
 
 interface NullParaAppBarParams {
   routes: IRoutes[];
@@ -30,7 +31,7 @@ export function NullParaAppBar({ routes }: NullParaAppBarParams) {
       <AppBar position="static">
         <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
           <Typography variant="h6" style={{ flexGrow: 1 }}>
-            null_para
+            {routes === routesParent ? "Elternansicht" : "Kinderansicht"}
           </Typography>
           <IconButton
             edge="end"

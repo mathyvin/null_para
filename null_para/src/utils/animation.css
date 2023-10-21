@@ -1,0 +1,44 @@
+@keyframes blinkGreen {
+    0%, 100% { color: initial; }
+    50% { color: green; }
+  }
+  
+  @keyframes blinkRed {
+    0%, 100% { color: initial; }
+    50% { color: red; }
+  }
+  
+  .blinkingGreen {
+    animation: blinkGreen 1s infinite;
+  }
+  
+  .blinkingRed {
+    animation: blinkRed 1s infinite;
+  }
+
+  @keyframes slideOutLeft {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  }
+  
+  .checkIcon {
+    animation: slideOutLeft 2s forwards;
+    /* other styles, positioning etc. go here */
+  }
+
+  @keyframes flyingStars {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100px; }  /* Adjust as needed */
+  }
+  
+  .flyingStarsAnimation {
+    animation: flyingStars 5s infinite;
+    /*background-image: url('/images/sterne.png'); /* Hinweis auf den vorausgestellten Slash */
+    /* other styles like width, height, position go here */
+  }

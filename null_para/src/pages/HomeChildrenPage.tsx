@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import BankingTile from "../components/BankingTile";
 import TaskTile from "../components/TaskTile";
-
+import '../utils/animation.css'
 import {
   getTransactions,
   getTasks,
@@ -22,38 +22,43 @@ import {
 import { Sparziel } from "../components/Sparziel";
 import { ISavingsGoal } from "../interfaces/ISavingsGoal";
 import { IUser } from "../interfaces/IUser";
+import { delay } from "q";
 
 export default function HomeChildrenPage() {
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
   const [tasks, setTasks] = useState<ITask[]>([]);
   const [balance, setBalance] = useState<number>(0);
   const [saving, setSaving] = useState<ISavingsGoal>();
+  const [pigImage, setPigImage] = useState("/images/SchweinHut1.png");
+  const [isBlinkingOn, setIsBlinkingOn] = useState(false);
+  
+  async function fetchData() {
+    const fetchedTransactions: ITransaction[] = await getTransactions();
+    fetchedTransactions.sort(function (a: ITransaction, b: ITransaction) {
+      return new Date(b.datetime).getTime() - new Date(a.datetime).getTime();
+    });
+
+    setTransactions(fetchedTransactions);
+
+    const fetchedTasks = await getTasks();
+    if (fetchedTasks.length > 0) {
+      await checkAndDeleteCompletedTask(fetchedTasks);
+    }
+    setTasks(fetchedTasks);
+
+    const fetchedSavings = await getSavingsGoals();
+    // TODO Needs to be done with the favorite saving
+    // setSavingGoal(fetchedSavings.map((fetchedSaving: ISavingsGoal) => fetchedSaving.favourite));
+    setSaving(fetchedSavings[0]);
+
+    // TODO Login user would be selected
+    const fetchedUsers: IUser[] = await getUsers();
+
+    setBalance(fetchedUsers[1].balance);
+  }
 
   useEffect(() => {
-    async function fetchData() {
-      const fetchedTransactions: ITransaction[] = await getTransactions();
-      fetchedTransactions.sort(function (a: ITransaction, b: ITransaction) {
-        return new Date(b.datetime).getTime() - new Date(a.datetime).getTime();
-      });
 
-      setTransactions(fetchedTransactions);
-
-      const fetchedTasks = await getTasks();
-      if (fetchedTasks.length > 0) {
-        await checkAndDeleteCompletedTask(fetchedTasks);
-      }
-      setTasks(fetchedTasks);
-
-      const fetchedSavings = await getSavingsGoals();
-      // TODO Needs to be done with the favorite saving
-      // setSavingGoal(fetchedSavings.map((fetchedSaving: ISavingsGoal) => fetchedSaving.favourite));
-      setSaving(fetchedSavings[0]);
-
-      // TODO Login user would be selected
-      const fetchedUsers: IUser[] = await getUsers();
-
-      setBalance(fetchedUsers[1].balance);
-    }
 
     fetchData();
 
@@ -78,6 +83,7 @@ export default function HomeChildrenPage() {
           'A task has been marked as "completed." ID:',
           completedTask.id,
         );
+        
 
         // You can also send the delete event to the backend here
         try {
@@ -90,6 +96,13 @@ export default function HomeChildrenPage() {
 
           if (response.ok) {
             console.log("Task deleted successfully.");
+            fetchData()
+            setPigImage("/images/SchweinHut2.png");
+            setIsBlinkingOn(true);
+            await delay(7500);
+            setIsBlinkingOn(false);
+            setPigImage("/images/SchweinHut1.png");
+            //TODO add waiting logic
           } else {
             console.error("Error deleting the task");
           }
@@ -104,7 +117,7 @@ export default function HomeChildrenPage() {
     <HomePageBox>
       <StyledBoxForPiggyBank>
         <img
-          src="/images/Schwein.png"
+          src={pigImage}
           alt="Piggy"
           style={{ width: 150, height: 150 }}
         />
@@ -124,7 +137,7 @@ export default function HomeChildrenPage() {
         <Box display="flex" flexDirection="row" flexWrap="wrap">
           {transactions.slice(0, 3).map((transaction, index) => (
             <Box key={index} m={1} width="calc(33.33% - 16px)">
-              <BankingTile transaction={transaction} />
+              <BankingTile isBlinkingOn={isBlinkingOn} transaction={transaction} />
             </Box>
           ))}
         </Box>
