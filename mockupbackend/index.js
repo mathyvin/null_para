@@ -209,6 +209,23 @@ app.put('/tasks/:id', (req, res) => {
   res.json(taskToUpdate);
 });
 
+// Route um eine neue aufgabe hinzuzufügen
+app.post('/tasks', (req, res) => {
+  const { title, description, completed, value } = req.body;
+
+  const newTask = {
+    id: tasks.length + 1,
+    title: title,
+    description: description,
+    completed: completed,
+    value: value
+  };
+
+  tasks.push(newTask);
+
+  res.status(201).json(newTask);
+});
+
 app.delete('/tasks/:id', (req, res) => {
   const taskId = parseInt(req.params.id);
 
