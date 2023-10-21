@@ -219,10 +219,18 @@ app.delete('/tasks/:id', (req, res) => {
     return res.status(404).json({ message: 'Aufgabe nicht gefunden' });
   }
 
+  // Finde die Aufgabe, die gelöscht wird
+  const taskToDelete = tasks[taskIndex];
+
+  // TODO hier nach Login user checken
+  users[1].balance += taskToDelete.value;
+
+  // Entferne die Aufgabe aus der Aufgabenliste
   tasks.splice(taskIndex, 1);
 
-  res.json({ message: 'Aufgabe wurde gelöscht' });
+  res.json({ message: 'Aufgabe wurde gelöscht und Balance wurde aktualisiert' });
 });
+
 
 
 let transactions = [

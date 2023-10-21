@@ -6,13 +6,14 @@ import { Navigation } from '@mui/icons-material';
 import BankingTile from '../components/BankingTile';
 import TaskTile from '../components/TaskTile';
 
-import { getTransactions, getTasks, getSavingsGoals } from '../backend/crud';
+import { getTransactions, getTasks, getSavingsGoals, getUsers } from '../backend/crud';
 import { ITask } from '../interfaces/ITask';
 import { ITransaction } from '../interfaces/ITransaction';
 import theme from '../utils/ThemeProvider';
 import {HomePageBox, StyledBoxForPiggyBank, StyledTypographyBalance, StyledTypographyBalanceTitle, StyledTypographyBig, StyledTypographyBigNotBold, StyledTypographySmall } from '../components/StyledComponents';
 import { Sparziel } from '../components/Sparziel';
 import { ISavingsGoal } from '../interfaces/ISavingsGoal';
+import { IUser } from '../interfaces/IUser';
 
 export default function HomeChildrenPage() {
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
@@ -27,18 +28,21 @@ export default function HomeChildrenPage() {
 
       const fetchedTasks = await getTasks();
       setTasks(fetchedTasks);
+      console.log(fetchedTasks)
+      if(tasks.length > 0){
+        await checkAndDeleteCompletedTask();
+      }
 
       const fetchedSavings = await getSavingsGoals();
       // TODO Needs to be done with favourite saving
       // setSavingGoal(fetchedSavings.map((fetchedSaving: ISavingsGoal) => fetchedSaving.favourite));
       setSaving(fetchedSavings[0])
       
-
-      setBalance(300);
-      if(tasks.length > 0){
-        await checkAndDeleteCompletedTask();
-      }
-
+      //TODO Login user would be selected
+      const fetchedUsers : IUser[] = await getUsers();
+      
+      setBalance(fetchedUsers[1].balance);
+      
     }
 
     fetchData();
@@ -46,17 +50,19 @@ export default function HomeChildrenPage() {
     const interval = setInterval(() => {
       fetchData();
       
-    }, 200);
+    }, 10000);
 
     return () => clearInterval(interval);
   }, []);
 
     // Funktion zum Überprüfen und Löschen einer abgeschlossenen Aufgabe
     const checkAndDeleteCompletedTask = async () => {
-      const completedTask = tasks.find(task => task.completed);
-      console.log(completedTask)
+      console.log(tasks)
+      const completedTasks = tasks.filter(task => task.completed === false);
+      console.log(completedTasks)
   
-      if (completedTask) {
+      if (completedTasks) {
+        completedTasks.forEach(async (completedTask) => {
         // Hier kannst du ein Event auslösen und die Aufgaben-ID (completedTask.id) an den TaskTile senden
         // Beispiel:
         console.log('Eine Aufgabe wurde als "completed" markiert. ID:', completedTask.id);
@@ -77,7 +83,7 @@ export default function HomeChildrenPage() {
           }
         } catch (error) {
           console.error('Fehler beim Senden der Löschanfrage:', error);
-        }
+        }});
       }
     };
   
@@ -87,7 +93,7 @@ export default function HomeChildrenPage() {
       <StyledBoxForPiggyBank>
       <img src="/images/Schwein.png" alt="Piggy" style={{ width: 150, height: 150 }} />
       <StyledTypographyBalanceTitle>Kontostand</StyledTypographyBalanceTitle>
-      <StyledTypographyBalance>{balance.toFixed(2)}€</StyledTypographyBalance>
+      <StyledTypographyBalance>{Number(balance).toFixed(2)}€</StyledTypographyBalance>
       </StyledBoxForPiggyBank>
 
       <Box width={{ xs: '100%', sm: '80%', md: '60%' }} my={2}>
