@@ -1,8 +1,6 @@
 import React from 'react';
-import { AppBar, IconButton, Typography, Box, List, ListItem, ListItemText, LinearProgress, Toolbar, Grid } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import { Navigation } from '@mui/icons-material';
-
+import { Typography, Grid } from '@mui/material'
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -12,73 +10,76 @@ import Button from '@mui/material/Button';
 export default function LearnPage() {
   return (
     <Grid container justifyContent="center" alignItems="center" direction="column" spacing={3}>
-        <Grid item>
-          <Card sx={{ maxWidth: 345 }}>
+        <Grid item sx={{ marginTop: '8px' }}>
+          <Card sx={{ maxWidth: 400 }}>
       <CardMedia
         sx={{ height: 140 }}
-        image="https://qumin.co.uk/wp-content/uploads/2018/07/s3-news-tmp-77017-peppa_pig-default-1024.jpg"
-        title="pepper pig para"
+        image="/images/poke_nature.jpg"
+        title="green"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Peppa "Pablo" Pig
+         Green Pokémon World
         </Typography>
         <Typography variant="body2" color="text.secondary">
-        Spend money like pablo escobar. Alcohol, snow and big cars - Peppa "Pablo" Pig shows how it works.
+        Let Shiggy and friends explain your digital footprint and how to keep the Pokémon world green.
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+      <Button sx={{ color: '#002E3C', backgroundColor: '#FFD700' }}><PlayArrowIcon/></Button>
+      <Typography sx={{ fontWeight: 'bold', marginLeft: '8px' }} variant="body2" color="text.secondary">
+              Finish to get a 2€ Reward
+            </Typography>
       </CardActions>
     </Card>
     </Grid>
-
-
     <Grid item>
-          <Card sx={{ maxWidth: 345 }}>
+          <Card sx={{ maxWidth: 400 }}>
       <CardMedia
         sx={{ height: 140 }}
-        image="https://wegotthiscovered.com/wp-content/uploads/2023/02/Ash_Ketchum_Money.jpg"
-        title="pepper pig para"
+        image="/images/poke_mistakes.webp"
+        title="avoid mistakes with ash"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Pepper "Pablo" Pig
+        Smart Money Management with Ash
         </Typography>
         <Typography variant="body2" color="text.secondary">
-        Spend money like pablo escobar. Alcohol, snow and big cars - Pepper "Pablo" Pig shows how it works.
+        Ash shows you how to avoid mistakes when saving money and how to avoid unnecessary expenses.
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+      <Button sx={{ color: '#002E3C', backgroundColor: '#FFD700' }}><PlayArrowIcon/></Button>
+      <Typography sx={{ fontWeight: 'bold', marginLeft: '8px' }} variant="body2" color="text.secondary">
+              Finish to get a 2€ Reward
+            </Typography>
       </CardActions>
     </Card>
     </Grid>
 
-    <Grid item>
-          <Card sx={{ maxWidth: 345 }}>
+    <Grid item sx={{ marginBottom: '8px' }}>
+          <Card sx={{ maxWidth: 400 }}>
       <CardMedia
         sx={{ height: 140 }}
-        image="https://nintendosoup.com/wp-content/uploads/2019/10/meowth_mime_jr_money.jpg"
-        title="pepper pig para"
+        image="/images/poke_saving.jpg"
+        title="saving tips from mauzi"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Pepper "Pablo" Pig
+          Mauzi's Pro Savings Tips
         </Typography>
         <Typography variant="body2" color="text.secondary">
-        Spend money like pablo escobar. Alcohol, snow and big cars - Pepper "Pablo" Pig shows how it works.
+        Get the best money-saving tips from Mauzi to get closer to your savings goals.
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+      <Button sx={{ color: '#002E3C', backgroundColor: '#FFD700' }}><PlayArrowIcon/></Button>
+      <Typography sx={{ fontWeight: 'bold', marginLeft: '8px' }} variant="body2" color="text.secondary">
+              Finish to get a 2€ Reward
+            </Typography>
       </CardActions>
     </Card>
     </Grid>
-
       </Grid>
   );
 }
