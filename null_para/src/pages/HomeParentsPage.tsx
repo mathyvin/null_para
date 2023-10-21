@@ -6,7 +6,7 @@ import { Navigation } from '@mui/icons-material';
 import BankingTile from '../components/BankingTile';
 import TaskTile from '../components/TaskTile';
 
-import { getTransactions, getTasks, getSavingsGoals } from '../backend/crud';
+import { getTransactions, getTasks, getSavingsGoals, getUsers } from '../backend/crud';
 import { ITask } from '../interfaces/ITask';
 import { ITransaction } from '../interfaces/ITransaction';
 import theme from '../utils/ThemeProvider';
@@ -14,6 +14,7 @@ import {HomePageBox, StyledBoxForPiggyBank, StyledTypographyBalance, StyledTypog
 import { Sparziel } from '../components/Sparziel';
 import { ISavingsGoal } from '../interfaces/ISavingsGoal';
 import TaskTileParents from '../components/TaskTileParents';
+import { IUser } from '../interfaces/IUser';
 
 export default function HomeParentPage() {
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
@@ -34,8 +35,10 @@ export default function HomeParentPage() {
       // setSavingGoal(fetchedSavings.map((fetchedSaving: ISavingsGoal) => fetchedSaving.favourite));
       setSaving(fetchedSavings[0])
       
-
-      setBalance(300);
+      //TODO Login user would be selected
+      const fetchedUsers : IUser[] = await getUsers();
+      
+      setBalance(fetchedUsers[1].balance);
     }
 
     fetchData();
