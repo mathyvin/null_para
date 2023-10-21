@@ -25,7 +25,11 @@ export default function HomeChildrenPage() {
   
   useEffect(() => {
     async function fetchData() {
-      const fetchedTransactions = await getTransactions();
+      const fetchedTransactions : ITransaction[] = await getTransactions();
+      fetchedTransactions.sort(function(a : ITransaction,b : ITransaction){
+        return new Date(b.datetime).getTime() - new Date(a.datetime).getTime();
+      });
+      
       setTransactions(fetchedTransactions);
     
       const fetchedTasks = await getTasks();
@@ -51,7 +55,7 @@ export default function HomeChildrenPage() {
     const interval = setInterval(() => {
       fetchData();
       
-    }, 10000);
+    }, 6000);
 
     return () => clearInterval(interval);
   }, []);
