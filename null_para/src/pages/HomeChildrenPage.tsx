@@ -21,29 +21,30 @@ export default function HomeChildrenPage() {
   const [balance, setBalance] = useState<number>(0);
   const [saving, setSaving] = useState<ISavingsGoal>();
 
+
+  
   useEffect(() => {
     async function fetchData() {
       const fetchedTransactions = await getTransactions();
       setTransactions(fetchedTransactions);
-
+    
       const fetchedTasks = await getTasks();
-      setTasks(fetchedTasks);
-      console.log(fetchedTasks)
-      if(tasks.length > 0){
-        await checkAndDeleteCompletedTask();
+      if (fetchedTasks.length > 0) {
+        await checkAndDeleteCompletedTask(fetchedTasks);
       }
-
+      setTasks(fetchedTasks);
+    
       const fetchedSavings = await getSavingsGoals();
-      // TODO Needs to be done with favourite saving
+      // TODO Needs to be done with the favorite saving
       // setSavingGoal(fetchedSavings.map((fetchedSaving: ISavingsGoal) => fetchedSaving.favourite));
-      setSaving(fetchedSavings[0])
-      
-      //TODO Login user would be selected
-      const fetchedUsers : IUser[] = await getUsers();
-      
+      setSaving(fetchedSavings[0]);
+    
+      // TODO Login user would be selected
+      const fetchedUsers: IUser[] = await getUsers();
+    
       setBalance(fetchedUsers[1].balance);
-      
     }
+    
 
     fetchData();
 
@@ -55,37 +56,34 @@ export default function HomeChildrenPage() {
     return () => clearInterval(interval);
   }, []);
 
-    // Funktion zum Überprüfen und Löschen einer abgeschlossenen Aufgabe
-    const checkAndDeleteCompletedTask = async () => {
-      console.log(tasks)
-      const completedTasks = tasks.filter(task => task.completed === false);
-      console.log(completedTasks)
+  const checkAndDeleteCompletedTask = async (fetchedTasks: ITask[]) => {
+    console.log(fetchedTasks)
+    const completedTasks = fetchedTasks.filter((task) => task.completed !== false);
   
-      if (completedTasks) {
-        completedTasks.forEach(async (completedTask) => {
-        // Hier kannst du ein Event auslösen und die Aufgaben-ID (completedTask.id) an den TaskTile senden
-        // Beispiel:
-        console.log('Eine Aufgabe wurde als "completed" markiert. ID:', completedTask.id);
+    if (completedTasks.length > 0) {
+      completedTasks.forEach(async (completedTask) => {
+        // Here you can trigger an event and send the task ID (completedTask.id) to TaskTile
+        // Example:
+        console.log('A task has been marked as "completed." ID:', completedTask.id);
   
-        // Hier kannst du auch das Löschevent an das Backend senden
+        // You can also send the delete event to the backend here
         try {
           const response = await fetch(`http://localhost:3002/tasks/${completedTask.id}`, {
             method: 'DELETE',
           });
   
           if (response.ok) {
-            console.log('Aufgabe wurde erfolgreich gelöscht.');
-            const updatedTasks = tasks.filter(task => task.id !== completedTask.id);
-            setTasks(updatedTasks);
-  
+            console.log('Task deleted successfully.');
           } else {
-            console.error('Fehler beim Löschen der Aufgabe');
+            console.error('Error deleting the task');
           }
         } catch (error) {
-          console.error('Fehler beim Senden der Löschanfrage:', error);
-        }});
-      }
-    };
+          console.error('Error sending delete request:', error);
+        }
+      });
+    }
+  };
+  
   
   
   return (

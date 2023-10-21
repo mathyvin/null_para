@@ -20,7 +20,6 @@ export default function HomeParentPage() {
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
   const [tasks, setTasks] = useState<ITask[]>([]);
   const [balance, setBalance] = useState<number>(0);
-  const [saving, setSaving] = useState<ISavingsGoal>();
 
   useEffect(() => {
     async function fetchData() {
@@ -29,11 +28,6 @@ export default function HomeParentPage() {
 
       const fetchedTasks = await getTasks();
       setTasks(fetchedTasks);
-
-      const fetchedSavings = await getSavingsGoals();
-      // TODO Needs to be done with favourite saving
-      // setSavingGoal(fetchedSavings.map((fetchedSaving: ISavingsGoal) => fetchedSaving.favourite));
-      setSaving(fetchedSavings[0])
       
       //TODO Login user would be selected
       const fetchedUsers : IUser[] = await getUsers();
@@ -50,11 +44,33 @@ export default function HomeParentPage() {
     return () => clearInterval(interval);
   }, []);
 
+  const handleButtonClick = (task : ITask) => {
+    // PUT-Anfrage an den Endpunkt /tasks/:id/completed senden
+    fetch(`http://localhost:3002/tasks/${task.id}/completed`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ completed: true }), // Hier wird der completed-Status auf true gesetzt
+    })
+      .then(response => {
+        if (response.ok) {
+          task.completed = true
+          setTasks(tasks)
+        } else {
+          // Handle den Fall, wenn die Anfrage fehlschlägt
+          console.error('Fehler beim Aktualisieren des Aufgabenstatus');
+        }
+      })
+      .catch(error => {
+        console.error('Fehler beim Senden der Anfrage:', error);
+      });
+  };
   
   return (
     <HomePageBox>
       <StyledBoxForPiggyBank>
-      <StyledTypographyBalanceTitle marginTop='20px'>Kontostand von Labinot</StyledTypographyBalanceTitle>
+      <StyledTypographyBalanceTitle marginTop='20px'>Kontostand von Vladimir</StyledTypographyBalanceTitle>
       <StyledTypographyBalance>{balance.toFixed(2)}€</StyledTypographyBalance>
       </StyledBoxForPiggyBank>
 
@@ -64,7 +80,10 @@ export default function HomeParentPage() {
         <Box display="flex" flexDirection="column" gap={'0px'} flexWrap="wrap">
           {tasks.slice(0, 3).map((task, index) => (
             <Box key={'task'+index} m={1}>
-              <TaskTileParents task={task} />
+              <TaskTileParents 
+              handleButtonClick={handleButtonClick} 
+              task={task} 
+              />
             </Box>
           ))}
         </Box>

@@ -209,7 +209,6 @@ app.put('/tasks/:id', (req, res) => {
   res.json(taskToUpdate);
 });
 
-// Route zum Löschen einer Aufgabe
 app.delete('/tasks/:id', (req, res) => {
   const taskId = parseInt(req.params.id);
 
@@ -219,16 +218,32 @@ app.delete('/tasks/:id', (req, res) => {
     return res.status(404).json({ message: 'Aufgabe nicht gefunden' });
   }
 
-  // Finde die Aufgabe, die gelöscht wird
+  // Find the task to be deleted
   const taskToDelete = tasks[taskIndex];
 
-  // TODO hier nach Login user checken
-  users[1].balance += taskToDelete.value;
+  // TODO: Here you should check for the login user
+  const loggedInUser = users[1];
 
-  // Entferne die Aufgabe aus der Aufgabenliste
+  // Create a transaction object
+  const transaction = {
+    id: transactions.length + 1, // Assign a new ID
+    amount: taskToDelete.value,  // Use the task value as the transaction amount
+    description: `Task Completed: ${taskToDelete.title}`, // Add a description
+    senderId: loggedInUser.id,   // Assign the sender ID (assuming it's the logged-in user)
+    receiverId: "YourReceiverId", // You need to specify the receiver ID
+    datetime: new Date().toISOString() // Use the current date and time
+  };
+
+  // Add the transaction to the transactions array
+  transactions.push(transaction);
+
+  // Update the balance
+  loggedInUser.balance += taskToDelete.value;
+
+  // Remove the task from the tasks list
   tasks.splice(taskIndex, 1);
 
-  res.json({ message: 'Aufgabe wurde gelöscht und Balance wurde aktualisiert' });
+  res.json({ message: 'Aufgabe wurde gelöscht, Balance wurde aktualisiert und Transaktion wurde hinzugefügt' });
 });
 
 
