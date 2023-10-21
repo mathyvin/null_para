@@ -15,9 +15,9 @@ export const routesChildren : IRoutes[] = [
     ];
 
 export const routesParent : IRoutes[] = [
-        {'url': '/', 'component': HomeParentsPage, name: "Home"},
-        {'url': '/saving', 'component': SavingChildrenPage, name: "Saving"},
+        {'url': '/eltern', 'component': HomeParentsPage, name: "Home"},
         {'url': '/learn', 'component': LearnPage, name: "Learn"},
         {'url': '/banking', 'component': BankingPage, name: "Banking"},
+        {'url': '/kindwechseln', 'component': SettingsPage, name: "Kind wechseln"},
         {'url': '/settings', 'component': SettingsPage, name: "Settings"}    
     ];

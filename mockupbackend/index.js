@@ -229,17 +229,17 @@ let transactions = [
     {
       id: 1,
       amount: 5,
-      description: 'Belohnung für Zimmer aufräumen',
+      description: 'Taschengeld',
       senderId: 1,
-      receiverId: 2,
+      receiverId: "Eltern",
       datetime: new Date().toISOString() 
     },
     {
       id: 2,
-      amount: 2,
-      description: 'Taschengeld',
+      amount: -2,
+      description: 'Pokemon Go',
       senderId: 1,
-      receiverId: 2,
+      receiverId: "Pokemon Go",
       datetime: new Date().toISOString() 
   }
   
@@ -316,8 +316,8 @@ app.delete('/transactions/:id', (req, res) => {
 let savingsGoals = [
     {
       id: 1,
-      title: 'Neues Fahrrad',
-      amount: 100,
+      title: 'Playstation 5',
+      amount: 500,
       savedAmount: 20,
       childId: 2
     },

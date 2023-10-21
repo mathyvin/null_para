@@ -45,7 +45,7 @@ export function NullParaAppBar({routes} : NullParaAppBarParams) {
         onClose={handleMenuClose}
       >
                {routes.map(route => 
-               <MenuItem onClick={handleMenuClose} component={Link} to={route.url}>
+               <MenuItem key={route.name} onClick={handleMenuClose} component={Link} to={route.url}>
                  {route.name}
                 </MenuItem>
                )

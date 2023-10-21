@@ -3,6 +3,6 @@ export interface ITransaction {
     amount: number;
     description: string;
     senderId: number;
-    receiverId: number;
+    receiverId: string;
     datetime: Date;
 }

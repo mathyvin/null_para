@@ -4,11 +4,12 @@ import theme from './utils/ThemeProvider';
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { NullParaAppBar } from './components/NullParaAppBar';
-import { routesChildren } from './routes';
+import { routesChildren, routesParent } from './routes';
 import { IRoutes } from './interfaces/IRoutes';
 
 
-const routes : IRoutes[] = routesChildren;
+//TODO user login instead of this
+const routes : IRoutes[] = window.location.href.endsWith('eltern') ? routesParent : routesChildren;
 
 export function App() {
   return (
@@ -18,7 +19,7 @@ export function App() {
       <NullParaAppBar routes={routes}/>
       <Routes>
         {routes.map(route => 
-        <Route path={route.url} Component={route.component}/>
+        <Route key={route.name} path={route.url} Component={route.component}/>
         )
         }
       </Routes>

@@ -3,6 +3,7 @@ import { StyledBox, StyledBoxItem, StyledPaper, StyledTypographyBig, StyledTypog
 import React from 'react';
 import { ITransaction } from '../interfaces/ITransaction';
 import { dateReturn } from '../utils/date';
+import { toDoubleDecimal } from '../utils/utils';
 
 interface BankingTileParams {
   transaction: ITransaction,
@@ -14,7 +15,7 @@ export default function BankingTile({transaction} : BankingTileParams){
       <StyledBox display="flex" flexDirection="column">
         <StyledBoxItem>
           <StyledTypographyBig>
-            {transaction.amount}€
+            {toDoubleDecimal(transaction.amount)}€
           </StyledTypographyBig>
         </StyledBoxItem>
 

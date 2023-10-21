@@ -56,7 +56,7 @@ export default function HomeChildrenPage() {
       </StyledBoxForPiggyBank>
 
       <Box width={{ xs: '100%', sm: '80%', md: '60%' }} my={2}>
-        <StyledTypographyBig>Letzten Zahlungen</StyledTypographyBig>
+        <StyledTypographyBig marginTop='25px'>Letzten Zahlungen</StyledTypographyBig>
         <Box display="flex" flexDirection="row" flexWrap="wrap">
           {transactions.slice(0, 3).map((transaction, index) => (
             <Box key={index} m={1} width="calc(33.33% - 16px)">
