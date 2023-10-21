@@ -79,20 +79,42 @@ export const StyledPaper = styled(Paper)({
 });
 
 
+export const StyledPaperColumn = styled(Paper)({
+  
+  flexBasis: 'calc(95% - 16px)', // Assumes 8px spacing on either side
+  boxSizing: 'border-box',
+  paddingRight: '3px',
+  paddingTop: '8px',
+  marginTop: '5px',
+  marginBottom: '4px', // Add spacing between tiles vertically
+  marginLeft: '4px', // Spacing on the left side of each tile
+  height: '100%',
+  textAlign: 'center',
+  color: 'black',
+  backgroundColor: theme.palette.background.paper,
+  borderRadius: '5px',
+  minHeight: '80px',
+  columnGap: '3px !important'
+});
+
 export const StyledBox = styled(Box)({
   gap: '3px !important',
 })
 
 export const StyledBoxItem = styled(Box)({
   margin: '5px',
-  paddingTop: '0px !important',
-  marginTop: '5px',
-  gap: '5px !important',
+  gap: '5px',
 });
 
 export const StyledTypographyBig = styled(Typography)({
   fontSize: '18px',
   fontWeight: 'bold',
+  padding: '0px !important',
+  lineHeight: '12px'
+});
+
+export const StyledTypographyBigNotBold = styled(Typography)({
+  fontSize: '18px',
   padding: '0px !important',
   lineHeight: '12px'
 });

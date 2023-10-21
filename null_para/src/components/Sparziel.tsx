@@ -12,8 +12,6 @@ interface SparzielProps {
 export function Sparziel({ title, amount, balance } : SparzielProps) {
 
   let progress = Math.round(balance / amount * 100);
-  console.log(amount)
-  console.log(balance)
   progress = progress > 100 ? 100 : progress;
 
   return (
