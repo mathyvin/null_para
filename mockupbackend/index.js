@@ -548,5 +548,5 @@ app.delete('/tasks/:id', (req, res) => {
 
 
 app.listen(PORT, () => {
-    console.log(`Server läuft auf http://localhost:${PORT}`);
+    console.log(`Server läuft auf PORT ${PORT}`);
 });

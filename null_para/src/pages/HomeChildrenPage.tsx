@@ -23,6 +23,7 @@ import { Sparziel } from "../components/Sparziel";
 import { ISavingsGoal } from "../interfaces/ISavingsGoal";
 import { IUser } from "../interfaces/IUser";
 import { delay } from "q";
+import BASE_URL from "../config";
 
 export default function HomeChildrenPage() {
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
@@ -88,7 +89,7 @@ export default function HomeChildrenPage() {
         // You can also send the delete event to the backend here
         try {
           const response = await fetch(
-            `http://localhost:3002/tasks/${completedTask.id}`,
+            `${BASE_URL}/tasks/${completedTask.id}`,
             {
               method: "DELETE",
             },

@@ -28,7 +28,7 @@ import {
   TextField,
 } from "@mui/material";
 import SendingMoneyTile from "../components/SendingMoneyTile";
-
+import BASE_URL from "../config";
 
 export default function HomeParentPage() {
   const [tasks, setTasks] = useState<ITask[]>([]);
@@ -66,9 +66,11 @@ export default function HomeParentPage() {
       completed: false, // Initial value for completed
       value: newTask.amount, // Use the amount entered by the user
     };
+    console.log(`${BASE_URL}/tasks`)
   
     // Send a POST request to add the new task
-    fetch("http://localhost:3002/tasks", {
+    fetch(`${BASE_URL}/tasks`, {
+
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -105,14 +107,15 @@ export default function HomeParentPage() {
 
     const interval = setInterval(() => {
       fetchData();
-    }, 10000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
 
   const handleButtonClick = (task: ITask) => {
     // PUT-Anfrage an den Endpunkt /tasks/:id/completed senden
-    fetch(`http://localhost:3002/tasks/${task.id}/completed`, {
+    fetch(`${BASE_URL}/tasks/${task.id}/completed`, {
+
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
