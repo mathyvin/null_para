@@ -1,15 +1,10 @@
-import { Box, IconButton, Paper, Typography } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import {
   StyledBoxItem,
   StyledPaperColumn,
-  StyledTypographyBig,
   StyledTypographyBigNotBold,
-  StyledTypographySmall,
 } from "./StyledComponents";
-import React, { useState } from "react";
-import { ITask } from "../interfaces/ITask";
-import { toDoubleDecimal } from "../utils/utils";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { useState } from "react";
 import Send from "@mui/icons-material/Send";
 
 interface SendingMoneyTileParams {
@@ -50,7 +45,7 @@ export default function SendingMoneyTile({
               <IconButton
                 onClick={handleClick}
                 color='success'
-                                aria-label="CheckCircle"
+                aria-label="CheckCircle"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >

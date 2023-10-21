@@ -31,7 +31,6 @@ import SendingMoneyTile from "../components/SendingMoneyTile";
 
 
 export default function HomeParentPage() {
-  const [transactions, setTransactions] = useState<ITransaction[]>([]);
   const [tasks, setTasks] = useState<ITask[]>([]);
   const [balance, setBalance] = useState<number>(0);
   
@@ -91,9 +90,6 @@ export default function HomeParentPage() {
   };
   
   async function fetchData() {
-    const fetchedTransactions = await getTransactions();
-    setTransactions(fetchedTransactions);
-
     const fetchedTasks = await getTasks();
     setTasks(fetchedTasks);
 

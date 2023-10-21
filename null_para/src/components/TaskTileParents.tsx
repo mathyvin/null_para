@@ -1,10 +1,9 @@
-import { Box, IconButton, Paper, Typography } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import {
   StyledBoxItem,
   StyledPaperColumn,
   StyledTypographyBig,
   StyledTypographyBigNotBold,
-  StyledTypographySmall,
 } from "./StyledComponents";
 import React, { useState } from "react";
 import { ITask } from "../interfaces/ITask";

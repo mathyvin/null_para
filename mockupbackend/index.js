@@ -147,20 +147,20 @@ app.delete('/users/:id', (req, res) => {
 
 
 let tasks = [
+  {
+    id: 2,
+    title: 'Aufräumen',
+    description: 'Aufräumen',
+    completed: false,
+    value: 2
+  },
     {
       id: 1,
-      title: 'Hausaufgaben machen',
-      description: 'Hausaufgaben',
+      title: 'Mathe Drei',
+      description: 'Schulnoten',
       completed: false,
-      value: 3
-      },
-    {
-      id: 2,
-      title: 'Aufräumen',
-      description: 'Aufräumen',
-      completed: false,
-      value: 2
-    }
+      value: 50
+      }
   ];
 
   // Route zum Abrufen aller Aufgaben
@@ -356,8 +356,8 @@ app.delete('/transactions/:id', (req, res) => {
 let savingsGoals = [
     {
       id: 1,
-      title: 'Playstation 5',
-      amount: 500,
+      title: 'Lego Deathstar',
+      amount: 115,
       savedAmount: 20,
       childId: 2
     },

@@ -4,7 +4,6 @@ import {
   Box,
   Grid,
   LinearProgress,
-  linearProgressClasses,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import theme from "../utils/ThemeProvider";
@@ -57,7 +56,7 @@ export const StyledTypographyBalance = styled(Typography)({
   color: "white",
 });
 
-export const CustomLinearProgress = styled(LinearProgress)(({}) => ({
+export const CustomLinearProgress = styled(LinearProgress)(() => ({
   height: 30,
   borderRadius: 5,
   marginBottom: "10px",
