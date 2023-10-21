@@ -20,7 +20,8 @@ app.use(passport.session());
 // Für JSON-Body-Parsing
 app.use(express.json());
 
-
+const cors = require('cors');
+app.use(cors());
 
 
 
@@ -148,17 +149,17 @@ app.delete('/users/:id', (req, res) => {
 let tasks = [
     {
       id: 1,
-      username: 'elternteil',
-      password: '$2a$10$Mq/TjO0.8KSS.VC8kec9WOXj2OTC2ep.ytnKI8IT0slyfU4uIKv22',
-      role: 'parent',
-      balance: 100
-    },
+      title: 'Hausaufgaben machen',
+      description: 'Hausaufgaben',
+      completed: 'incomplete',
+      value: 3
+      },
     {
       id: 2,
-      username: 'kind',
-      password: '$2a$10$Mq/TjO0.8KSS.VC8kec9WOXj2OTC2ep.ytnKI8IT0slyfU4uIKv22',
-      role: 'child',
-      balance: 20
+      title: 'Aufräumen',
+      description: 'Aufräumen',
+      completed: 'incomplete',
+      value: 2
     }
   ];
 
@@ -169,13 +170,14 @@ app.get('/tasks', (req, res) => {
 
 // Route zum Erstellen einer neuen Aufgabe
 app.post('/tasks', (req, res) => {
-  const { title, description, completed } = req.body;
+  const { title, description, completed, value } = req.body;
 
   const newTask = {
     id: tasks.length + 1,
     title: title,
     description: description,
-    completed: completed
+    completed: completed,
+    value: value
   };
 
   tasks.push(newTask);
