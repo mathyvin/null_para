@@ -3,8 +3,7 @@ import { ISavingsGoal } from "../interfaces/ISavingsGoal";
 import { IUser } from "../interfaces/IUser";
 import { IVideoLesson } from "../interfaces/IVideoLesson";
 import { ITask } from "../interfaces/ITask";
-
-const BASE_URL = "http://localhost:3002";
+import BASE_URL from "../config";
 
 // Login
 export const loginUser = async (username: string, password: string) => {
