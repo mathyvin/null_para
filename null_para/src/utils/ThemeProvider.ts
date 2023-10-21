@@ -26,8 +26,30 @@ const theme = createTheme({
       light: '#89B2B9', // Coast Light
     },
     background: {
-      default: '#F1EFED', // Sand
+      default: '#FFFFF', 
+      paper: '#F1EFED' // Sand
     },
+  },
+
+    components: {
+      MuiAppBar: {
+        styleOverrides: {
+          colorPrimary: {
+            backgroundColor: '#F1EFED'
+          }
+        }
+      },  
+      MuiPaper: {
+        defaultProps: {
+          elevation: 0, // Remove shadow globally for all Paper components
+        },
+        styleOverrides: {
+          root: {
+            boxShadow: 'none',  // Remove any box shadow
+          },
+        },
+      },
+  
   },
 });
 

@@ -1,37 +1,36 @@
-import { Grid, Paper, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import {StyledGridItem, StyledPaper, StyledTypographyBig, StyledTypographySmall} from './StyledComponents'
+import { Box, Paper, Typography } from '@mui/material';
+import { StyledBox, StyledBoxItem, StyledPaper, StyledTypographyBig, StyledTypographySmall } from './StyledComponents'
 import React from 'react';
+import { ITransaction } from '../interfaces/ITransaction';
+import { dateReturn } from '../utils/date';
+import { toDoubleDecimal } from '../utils/utils';
 
-export default function BankingTile(){
+interface BankingTileParams {
+  transaction: ITransaction,
+}
 
-  return   (  
+export default function BankingTile({transaction} : BankingTileParams){
+  return (  
     <StyledPaper>
-    <Grid container direction="column" spacing={2}>
-      
-      {/* Transaction Value */}
-      <StyledGridItem item>
-        <StyledTypographyBig>
-          $1234.56  {/* Example Value */}
-        </StyledTypographyBig>
-      </StyledGridItem>
-      
-      {/* Transaction Date */}
-      <StyledGridItem item>
-        <StyledTypographySmall>
-          20th Oct 2023  {/* Example Date */}
-        </StyledTypographySmall>
-      </StyledGridItem>
-      
-      {/* Recipient Name */}
-      <StyledGridItem item>
-        <StyledTypographySmall variant="body1">
-          John Doe  {/* Example Recipient */}
-        </StyledTypographySmall>
-      </StyledGridItem>
+      <StyledBox display="flex" flexDirection="column">
+        <StyledBoxItem>
+          <StyledTypographyBig>
+            {toDoubleDecimal(transaction.amount)}€
+          </StyledTypographyBig>
+        </StyledBoxItem>
 
-    </Grid>
-  </StyledPaper>
-  
+        <StyledBoxItem>
+          <StyledTypographySmall>
+            {dateReturn(transaction.datetime)}
+          </StyledTypographySmall>
+        </StyledBoxItem>
+
+        <StyledBoxItem>
+          <StyledTypographySmall>
+            {transaction.receiverId}
+          </StyledTypographySmall>
+        </StyledBoxItem>
+      </StyledBox>
+    </StyledPaper>
   )
 }
