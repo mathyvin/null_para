@@ -230,7 +230,7 @@ app.delete('/tasks/:id', (req, res) => {
     amount: taskToDelete.value,  // Use the task value as the transaction amount
     description: `Task Completed: ${taskToDelete.title}`, // Add a description
     senderId: loggedInUser.id,   // Assign the sender ID (assuming it's the logged-in user)
-    receiverId: "YourReceiverId", // You need to specify the receiver ID
+    receiverId: "Papa", // You need to specify the receiver ID
     datetime: new Date().toISOString() // Use the current date and time
   };
 
@@ -255,7 +255,7 @@ let transactions = [
       description: 'Taschengeld',
       senderId: 1,
       receiverId: "Eltern",
-      datetime: new Date().toISOString() 
+      datetime: (new Date()).toISOString() 
     },
     {
       id: 2,
@@ -263,7 +263,7 @@ let transactions = [
       description: 'Pokemon Go',
       senderId: 1,
       receiverId: "Pokemon Go",
-      datetime: new Date().toISOString() 
+      datetime: (new Date()).toISOString() 
   }
   
   ];

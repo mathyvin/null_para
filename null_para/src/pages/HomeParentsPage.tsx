@@ -27,6 +27,8 @@ export default function HomeParentPage() {
       setTransactions(fetchedTransactions);
 
       const fetchedTasks = await getTasks();
+      console.log("Papaa")
+      console.log(fetchedTasks)
       setTasks(fetchedTasks);
       
       //TODO Login user would be selected
@@ -79,10 +81,10 @@ export default function HomeParentPage() {
         <StyledTypographyBig variant="h6">Letzte Aufgaben</StyledTypographyBig>
         <Box display="flex" flexDirection="column" gap={'0px'} flexWrap="wrap">
           {tasks.slice(0, 3).map((task, index) => (
-            <Box key={'task'+index} m={1}>
+            <Box key={'task'+task.id} m={1}>
               <TaskTileParents 
               handleButtonClick={handleButtonClick} 
-              task={task} 
+              task={task}
               />
             </Box>
           ))}
