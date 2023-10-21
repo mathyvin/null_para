@@ -57,12 +57,12 @@ export default function SavingChildrenPage() {
       marginTop={window.innerHeight > 830 ? "35px" : "10px"}
       marginBottom="10px"
     >
-      Deine Aufgaben um belohnt zu werden
+      Deine Aufgaben für Belohnungen
     </StyledTypographyBig>
     <Box display="flex" flexDirection="column" flexWrap="wrap">
           {tasks.length > 0 ? (
             tasks.slice(0, 3).map((task, index) => (
-              <Box key={index} m={1} width="calc(33.33% - 16px)">
+              <Box key={index} m={1}>
                 <TaskTile task={task} />
               </Box>
             ))
@@ -80,8 +80,8 @@ export default function SavingChildrenPage() {
       <Box display="flex" flexDirection="column" flexWrap="wrap">
           {savingGoals.length > 0 ? (
             savingGoals.slice(0, 3).map((savingGoal, index) => (
-              <Box key={index} m={1} width="calc(33.33% - 16px)">
-             <Sparziel  title={savingGoal.title} amount={savingGoal.amount} balance={savingGoal.savedAmount}></Sparziel>
+              <Box key={index} m={1}>
+             <Sparziel isBlinkingOn={false} title={savingGoal.title} amount={savingGoal.amount} balance={savingGoal.savedAmount}></Sparziel>
               </Box>
             ))
           ) : (
