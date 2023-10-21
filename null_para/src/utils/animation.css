@@ -8,12 +8,30 @@
     50% { color: red; }
   }
   
+  @keyframes blinkGreenWhite {
+    0%, 100% { color: white; }
+    50% { color: green; }
+  }
+  
+  @keyframes blinkRedWhite {
+    0%, 100% { color: white; }
+    50% { color: red; }
+  }
+
   .blinkingGreen {
     animation: blinkGreen 1s infinite;
   }
   
   .blinkingRed {
     animation: blinkRed 1s infinite;
+  }
+
+  .blinkingGreenWhite {
+    animation: blinkGreenWhite 1s infinite;
+  }
+  
+  .blinkingRed {
+    animation: blinkRedWhite 1s infinite;
   }
 
   @keyframes slideOutLeft {

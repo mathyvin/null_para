@@ -27,12 +27,14 @@ import {
   DialogTitle,
   TextField,
 } from "@mui/material";
+import SendingMoneyTile from "../components/SendingMoneyTile";
 
 
 export default function HomeParentPage() {
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
   const [tasks, setTasks] = useState<ITask[]>([]);
   const [balance, setBalance] = useState<number>(0);
+  
   const kindName = 'Vladimir';
 
   const [open, setOpen] = useState(false);
@@ -137,15 +139,15 @@ export default function HomeParentPage() {
 
   return (
     <HomePageBox>
-      <StyledBoxForPiggyBank>
+      <StyledBoxForPiggyBank padding="20px">
         <StyledTypographyBalanceTitle marginTop="20px">
           Kontostand von {kindName}
         </StyledTypographyBalanceTitle>
         <StyledTypographyBalance>{balance.toFixed(2)}€</StyledTypographyBalance>
       </StyledBoxForPiggyBank>
 
-      <Box width={{ xs: "100%", sm: "80%", md: "60%" }} my={2}>
-        <StyledTypographyBig variant="h6">Aufgaben von {kindName}</StyledTypographyBig>
+      <Box width={{ xs: "100%", sm: "80%", md: "60%" }} paddingTop="25px" my={2}>
+        <StyledTypographyBig>Aufgaben von {kindName}</StyledTypographyBig>
         <Box display="flex" flexDirection="column" gap={"0px"} flexWrap="wrap">
           {tasks.slice(0, 3).map((task, index) => (
             <Box key={"task" + task.id} m={1}>
@@ -157,8 +159,9 @@ export default function HomeParentPage() {
           ))}
         </Box>
       </Box>
+      
 
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button color='success' variant="outlined" onClick={handleClickOpen}>
         Neue Aufgabe hinzufügen
       </Button>
 
@@ -185,14 +188,24 @@ export default function HomeParentPage() {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleClose} color='error'>
             Abbrechen
           </Button>
-          <Button onClick={handleAddTask} color="primary">
+          <Button onClick={handleAddTask} color='success'>
             Hinzufügen
           </Button>
         </DialogActions>
       </Dialog>
+
+
+      <Box width={{ xs: "100%", sm: "80%", md: "60%" }} paddingTop="25px" my={2}>
+        <StyledTypographyBig>Schnell Geld senden</StyledTypographyBig>
+        <Box display="flex" flexDirection="column" gap={"0px"} flexWrap="wrap">
+            <Box m={1}>
+              <SendingMoneyTile />
+            </Box>
+        </Box>
+      </Box>
 
     </HomePageBox>
 

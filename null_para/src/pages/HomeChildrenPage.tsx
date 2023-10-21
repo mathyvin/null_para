@@ -115,22 +115,25 @@ export default function HomeChildrenPage() {
 
   return (
     <HomePageBox>
-      <StyledBoxForPiggyBank>
+      <StyledBoxForPiggyBank           
+      padding={window.innerHeight > 870 ? "15px" : "5px"}
+      >
         <img
           src={pigImage}
           alt="Piggy"
           style={{ width: 150, height: 150 }}
         />
-        <StyledTypographyBalanceTitle>Kontostand</StyledTypographyBalanceTitle>
-        <StyledTypographyBalance>
+        <StyledTypographyBalanceTitle>
+          Kontostand
+        </StyledTypographyBalanceTitle>
+        <StyledTypographyBalance className={isBlinkingOn ? 'blinkingGreenWhite' : ''}>
           {Number(balance).toFixed(2)}€
         </StyledTypographyBalance>
       </StyledBoxForPiggyBank>
 
       <Box width={{ xs: "100%", sm: "80%", md: "60%" }} my={2}>
         <StyledTypographyBig
-          marginTop={window.innerHeight > 830 ? "35px" : "10px"}
-          marginBottom="10px"
+          marginTop={window.innerHeight > 870 ? "25px" : "5px"}
         >
           Letzten Zahlungen
         </StyledTypographyBig>
@@ -145,8 +148,7 @@ export default function HomeChildrenPage() {
 
       <Box width={{ xs: "100%", sm: "80%", md: "60%" }} my={2}>
         <StyledTypographyBig
-          marginTop={window.innerHeight > 830 ? "35px" : "10px"}
-          marginBottom="10px"
+          marginTop={window.innerHeight > 870 ? "25px" : "5px"}
         >
           Letzte Aufgaben
         </StyledTypographyBig>
@@ -165,13 +167,21 @@ export default function HomeChildrenPage() {
         </Box>
       </Box>
 
+
       <Box
-        marginTop={window.innerHeight > 830 ? "35px" : "10px"}
-        width={{ xs: "100%", sm: "80%", md: "60%" }}
+          marginTop={window.innerHeight > 870 ? "25px" : "5px"}
+          width={{ xs: "100%", sm: "80%", md: "60%" }}
         my={2}
       >
+                <StyledTypographyBig
+          marginTop={window.innerHeight > 870 ? "25px" : "5px"}
+          marginBottom="10px"
+        >
+          Favorisiertes Ziel
+        </StyledTypographyBig>
         {saving?.amount && (
           <Sparziel
+            isBlinkingOn={isBlinkingOn}
             balance={balance}
             amount={saving.amount}
             title={saving.title}

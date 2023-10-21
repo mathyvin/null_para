@@ -8,12 +8,13 @@ import {
 } from "./StyledComponents";
 
 interface SparzielProps {
+  isBlinkingOn: boolean;
   title: string;
   amount: number;
   balance: number;
 }
 
-export function Sparziel({ title, amount, balance }: SparzielProps) {
+export function Sparziel({ isBlinkingOn, title, amount, balance }: SparzielProps) {
   let progress = Math.round((balance / amount) * 100);
   progress = progress > 100 ? 100 : progress;
 
@@ -29,7 +30,7 @@ export function Sparziel({ title, amount, balance }: SparzielProps) {
         <StyledBoxItem>
           <CustomLinearProgress
             color="info"
-            variant="determinate"
+            variant="buffer"
             value={progress}
           />
           <StyledTypographyBig marginBottom="15px">

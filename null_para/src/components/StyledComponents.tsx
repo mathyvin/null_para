@@ -38,7 +38,6 @@ export const StyledBoxForPiggyBank = styled(Box)({
   justifyContent: "center",
   width: "100vw",
   p: 3,
-  padding: "10px",
   background: theme.palette.secondary.main,
 });
 

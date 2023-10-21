@@ -10,19 +10,14 @@ import React, { useState } from "react";
 import { ITask } from "../interfaces/ITask";
 import { toDoubleDecimal } from "../utils/utils";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import Send from "@mui/icons-material/Send";
 
-interface TaskTileParams {
-  task: ITask;
-  handleButtonClick: any;
+interface SendingMoneyTileParams {
 }
 
-export default function TaskTileParents({
-  task,
-  handleButtonClick,
-}: TaskTileParams) {
+export default function SendingMoneyTile({
+}: SendingMoneyTileParams) {
   const [isHovered, setIsHovered] = useState(false);
-  const [isAccepted, setIsAccepted] = useState(task.completed);
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -32,28 +27,17 @@ export default function TaskTileParents({
     setIsHovered(false);
   };
 
-  const handleClickTaskFileParents = () => {
-    handleButtonClick(task);
-    setIsAccepted(true);
-  };
+  const handleClick = () => {
+    
+  }
 
   return (
     <StyledPaperColumn>
       <Box display="flex" flexDirection="row" gap={0}>
-        <StyledBoxItem sx={{ width: "75%" }}>
-          <Box display="flex" flexDirection="column" gap={2}>
-            <StyledBoxItem>
-              <StyledTypographyBig textAlign="left">
-                {toDoubleDecimal(task.value)}€
-              </StyledTypographyBig>
-            </StyledBoxItem>
-
-            <StyledBoxItem>
-              <StyledTypographyBigNotBold textAlign="left">
-                {task.title}
+        <StyledBoxItem alignContent="center" sx={{ width: "75%" }}>
+              <StyledTypographyBigNotBold textAlign="left" alignContent={"center"}>
+                {"Sende Geld"}
               </StyledTypographyBigNotBold>
-            </StyledBoxItem>
-          </Box>
         </StyledBoxItem>
         <StyledBoxItem sx={{ width: "15%" }}>
           <Box
@@ -64,18 +48,13 @@ export default function TaskTileParents({
           >
             <StyledBoxItem marginRight={"10"}>
               <IconButton
-                onClick={handleClickTaskFileParents}
+                onClick={handleClick}
                 color='success'
                                 aria-label="CheckCircle"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
-                {isAccepted && "Accepted"}{" "}
-                {isHovered || isAccepted ? (
-                  <CheckCircleIcon fontSize="large" />
-                ) : (
-                  <CheckCircleOutlineIcon fontSize="large" />
-                )}
+                  <Send fontSize="large" />
               </IconButton>
             </StyledBoxItem>
           </Box>
