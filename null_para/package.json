@@ -24,7 +24,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "cross-env NODE_ENV=production BASE_URL=http://null-para-frontend-nullpara.apps.cluster-rtxk9.gcp.redhatworkshops.io:3002 react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

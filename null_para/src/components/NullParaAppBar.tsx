@@ -48,6 +48,7 @@ export function NullParaAppBar({ routes }: NullParaAppBarParams) {
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleMenuClose}
+        elevation={5}
       >
         {routes.map((route) => (
           <MenuItem
