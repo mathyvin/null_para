@@ -151,14 +151,14 @@ let tasks = [
       id: 1,
       title: 'Hausaufgaben machen',
       description: 'Hausaufgaben',
-      completed: 'incomplete',
+      completed: false,
       value: 3
       },
     {
       id: 2,
       title: 'Aufräumen',
       description: 'Aufräumen',
-      completed: 'incomplete',
+      completed: false,
       value: 2
     }
   ];
@@ -471,6 +471,40 @@ app.delete('/videoLessons/:id', (req, res) => {
 });
 
 let quizzes = [];
+
+// Route zum Aktualisieren des Aufgabenstatus
+app.put('/tasks/:id/completed', (req, res) => {
+  const taskId = parseInt(req.params.id);
+  const { completed } = req.body;
+
+  const taskToUpdate = tasks.find(task => task.id === taskId);
+
+  if (!taskToUpdate) {
+    return res.status(404).json({ message: 'Aufgabe nicht gefunden' });
+  }
+
+  if (completed !== undefined) {
+    taskToUpdate.completed = completed;
+  }
+
+  res.json(taskToUpdate);
+});
+
+// Route zum Löschen einer Aufgabe
+app.delete('/tasks/:id', (req, res) => {
+  const taskId = parseInt(req.params.id);
+
+  const taskIndex = tasks.findIndex(task => task.id === taskId);
+
+  if (taskIndex === -1) {
+    return res.status(404).json({ message: 'Aufgabe nicht gefunden' });
+  }
+
+  tasks.splice(taskIndex, 1);
+
+  res.json({ message: 'Aufgabe wurde gelöscht' });
+});
+
 
 
 app.listen(PORT, () => {

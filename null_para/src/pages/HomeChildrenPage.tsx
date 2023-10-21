@@ -10,7 +10,7 @@ import { getTransactions, getTasks, getSavingsGoals } from '../backend/crud';
 import { ITask } from '../interfaces/ITask';
 import { ITransaction } from '../interfaces/ITransaction';
 import theme from '../utils/ThemeProvider';
-import {HomePageBox, StyledBoxForPiggyBank, StyledTypographyBalance, StyledTypographyBalanceTitle, StyledTypographyBig } from '../components/StyledComponents';
+import {HomePageBox, StyledBoxForPiggyBank, StyledTypographyBalance, StyledTypographyBalanceTitle, StyledTypographyBig, StyledTypographyBigNotBold, StyledTypographySmall } from '../components/StyledComponents';
 import { Sparziel } from '../components/Sparziel';
 import { ISavingsGoal } from '../interfaces/ISavingsGoal';
 
@@ -35,17 +35,52 @@ export default function HomeChildrenPage() {
       
 
       setBalance(300);
+      if(tasks.length > 0){
+        await checkAndDeleteCompletedTask();
+      }
+
     }
 
     fetchData();
 
     const interval = setInterval(() => {
       fetchData();
-    }, 10000);
+      
+    }, 200);
 
     return () => clearInterval(interval);
   }, []);
 
+    // Funktion zum Überprüfen und Löschen einer abgeschlossenen Aufgabe
+    const checkAndDeleteCompletedTask = async () => {
+      const completedTask = tasks.find(task => task.completed);
+      console.log(completedTask)
+  
+      if (completedTask) {
+        // Hier kannst du ein Event auslösen und die Aufgaben-ID (completedTask.id) an den TaskTile senden
+        // Beispiel:
+        console.log('Eine Aufgabe wurde als "completed" markiert. ID:', completedTask.id);
+  
+        // Hier kannst du auch das Löschevent an das Backend senden
+        try {
+          const response = await fetch(`http://localhost:3002/tasks/${completedTask.id}`, {
+            method: 'DELETE',
+          });
+  
+          if (response.ok) {
+            console.log('Aufgabe wurde erfolgreich gelöscht.');
+            const updatedTasks = tasks.filter(task => task.id !== completedTask.id);
+            setTasks(updatedTasks);
+  
+          } else {
+            console.error('Fehler beim Löschen der Aufgabe');
+          }
+        } catch (error) {
+          console.error('Fehler beim Senden der Löschanfrage:', error);
+        }
+      }
+    };
+  
   
   return (
     <HomePageBox>
@@ -69,11 +104,12 @@ export default function HomeChildrenPage() {
       <Box width={{ xs: '100%', sm: '80%', md: '60%' }} my={2}>
         <StyledTypographyBig variant="h6">Letzte Aufgaben</StyledTypographyBig>
         <Box display="flex" flexDirection="row" flexWrap="wrap">
-          {tasks.slice(0, 3).map((task, index) => (
+          {tasks.length > 0 ?
+          tasks.slice(0, 3).map((task, index) => (
             <Box key={index} m={1} width="calc(33.33% - 16px)">
               <TaskTile task={task} />
             </Box>
-          ))}
+          )): <StyledTypographyBigNotBold margin='15px'>Keine Tasks</StyledTypographyBigNotBold>}
         </Box>
       </Box>
 
