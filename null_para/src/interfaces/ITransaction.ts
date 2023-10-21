@@ -4,4 +4,5 @@ export interface ITransaction {
     description: string;
     senderId: number;
     receiverId: number;
+    datetime: Date;
 }

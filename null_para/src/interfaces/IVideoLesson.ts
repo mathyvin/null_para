@@ -1,7 +1,6 @@
-export interface ISavingsGoal {
+export interface IVideoLesson {
     id?: number;
     title: string;
-    amount: number;
-    savedAmount: number;
-    childId: number;
+    description: string;
+    url: string;
 }
