@@ -45,6 +45,7 @@ export const StyledTypographyBalanceTitle = styled(Typography)({
   padding: "0px !important",
   lineHeight: "12px",
   color: theme.palette.primary.main,
+  letterSpacing: "-1.2px"
 });
 
 export const StyledTypographyBalance = styled(Typography)({
@@ -54,6 +55,7 @@ export const StyledTypographyBalance = styled(Typography)({
   lineHeight: "40px",
   margin: "10px",
   color: "white",
+  letterSpacing: "-1.2px"
 });
 
 export const CustomLinearProgress = styled(LinearProgress)(() => ({
@@ -111,18 +113,20 @@ export const StyledTypographyBig = styled(Typography)({
   fontSize: "18px",
   fontWeight: "bold",
   padding: "0px !important",
-  lineHeight: "12px",
+  lineHeight: "22px",
+  letterSpacing: "-0.6px"
 });
 
 export const StyledTypographyBigNotBold = styled(Typography)({
   fontSize: "18px",
   padding: "0px !important",
-  lineHeight: "12px",
+  lineHeight: "22px",
+  letterSpacing: "-0.6px"
 });
 
 export const StyledTypographySmall = styled(Typography)({
   fontSize: "12px",
-  lineHeight: "12px",
+  lineHeight: "4px",
 });
 
 export const StyledBankingBox = styled(Box)({
