@@ -7,8 +7,6 @@ const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 const session = require('express-session');
 
-app.use(cors()); // aktiviert CORS für alle Routen
-
 // Einbinden der Session-Middleware
 app.use(session({
   secret: 'dein geheimes Wort', 
