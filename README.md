@@ -1,4 +1,29 @@
 
+# Infrastructure:
+
+1.  **Directories**:
+    
+    -   **mockupbackend**: This appears to be a directory for a mock backend setup. The inclusion of `node_modules` indicates it's likely a Node.js project.
+    -   **null_para**: This is the the primary project directory. Given the structure, it's a React-based project, created with Create React App (CRA).
+2.  **File Structure**:
+    
+    -   Within **mockupbackend**, there's an `index.js` indicating the starting point for the backend, and package-related files (`package-lock.json` and `package.json`), showing its dependencies and configurations.
+    -   Inside **null_para**, there's a clear separation between public assets (`public` directory) and source code (`src` directory). Within `src`, there are separate directories for `backend`, `components`, `interfaces`, `pages`, and `utils`, indicating a well-organized frontend structure.
+
+### Technologies:
+
+1.  **React**: The primary library for building the user interface. Evident from the `react` and `react-dom` dependencies.
+2.  **TypeScript**: The project uses TypeScript for static typing, evident from the `.tsx` file extensions and the `typescript` dependency.
+3.  **MUI (formerly Material-UI)**: A popular React UI framework. The project uses both MUI's core components (`@mui/material`) and icons (`@mui/icons-material`).
+4.  **Emotion**: A library for writing CSS styles with JavaScript. This is evident from the dependencies `@emotion/react` and `@emotion/styled`.
+5.  **React Router**: Used for routing in the React application, evident from the `react-router-dom` dependency.
+6.  **Testing Libraries**: The project is set up for testing with libraries such as `@testing-library/react`, `@testing-library/jest-dom`, and others.
+7.  **ESLint and Prettier**: Tools for maintaining code quality and formatting. Evident from the `eslintConfig` in `package.json` and the `.prettier` file.
+8.  **web-vitals**: A library for measuring web performance.
+9.  **cross-env**: A utility for setting and using environment variables across platforms. Used in the build script for setting the `BASE_URL`.
+
+In summary, the infrastructure consists of a mock backend built with Node.js and a frontend built with React and TypeScript, incorporating MUI for UI components. The frontend is structured, separating concerns like components, pages, and utility functions, and is set up for testing and maintaining code quality.
+
 # Getting Started with null_para repository
   
 
@@ -101,7 +126,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
     -   **URL**: `/kindwechseln`
     -   **Component**: `SettingsPage`
     -   **Name**: "Kind wechseln" (Translation: "Switch Child")
-    -   **Description**: This seems to be a special settings page for parents, allowing them to switch between the accounts or profiles of multiple children.
+    -   **Description**: This is a special settings page for parents, allowing them to switch between the accounts or profiles of multiple children.
 5.  **Settings Route** (similar to children):
     
     -   **URL**: `/settings`
