@@ -21,12 +21,8 @@ app.use(passport.session());
 app.use(express.json());
 
 const cors = require('cors');
-const corsOptions = {
-  origin: 'http://localhost:3000',  // oder den Port, auf dem Ihre Frontend-Anwendung läuft
-  optionsSuccessStatus: 200 // Für ältere Browser-Versionen, die nicht HTTP-Status 204 unterstützen
-}
+app.use(cors());
 
-app.use(cors(corsOptions));
 
 
 // Dummy-Datenbank (als Platzhalter)
