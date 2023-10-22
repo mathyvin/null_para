@@ -3,12 +3,12 @@
 
 1.  **Directories**:
     
-    -   **mockupbackend**: This appears to be a directory for a mock backend setup. The inclusion of `node_modules` indicates it's likely a Node.js project.
+    -   **mockupbackend**: This is the directory for the mock backend setup. It's a Node.js project.
     -   **null_para**: This is the the primary project directory. Given the structure, it's a React-based project, created with Create React App (CRA).
 2.  **File Structure**:
     
-    -   Within **mockupbackend**, there's an `index.js` indicating the starting point for the backend, and package-related files (`package-lock.json` and `package.json`), showing its dependencies and configurations.
-    -   Inside **null_para**, there's a clear separation between public assets (`public` directory) and source code (`src` directory). Within `src`, there are separate directories for `backend`, `components`, `interfaces`, `pages`, and `utils`, indicating a well-organized frontend structure.
+    -   Within **mockupbackend**, there's an `index.js` pointing the starting point for the backend, and package-related files (`package-lock.json` and `package.json`), showing its dependencies and configurations.
+    -   Inside **null_para**, there's a clear separation between public assets (`public` directory) and source code (`src` directory). Within `src`, there are separate directories for `backend`, `components`, `interfaces`, `pages`, and `utils`, a organized frontend structure.
 
 ### Technologies:
 
